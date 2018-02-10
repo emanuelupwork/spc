@@ -1,0 +1,147 @@
+{#
+/**
+ * @file
+ * The default template file for e-mails.
+ *
+ * Available variables:
+ * - subject: The subject.
+ * - body: The message content.
+ * - message: The $message array created and used in the mail building
+ *   procedure. Its content varies between cases, but typically contains at
+ *   least the following elements:
+ *   - id: The message identifier.
+ *   - module: The module that handles the building of the message.
+ *   - key: The key of the message.
+ *   - to: The recipient email address.
+ *   - from: The email address of the sender.
+ *   - langcode: The langcode to use to compose the e-mail.
+ *   - params: The message parameters.
+ *   - base_url: The absolute base URL.
+ *   - logo_url: The absolute logo URL.
+ *   - site_name: The site name defined in drupal config.
+ *   - form_url: The form url from where this form is submited.
+ *
+ * This template may be overriden by module and/or mail key, using any of the
+ * following template names:
+ * - swiftmailer.html.twig: global, used by default.
+ * - swiftmailer--mymodule.html.twig: only emails sent by the module "mymodule".
+ * - swiftmailer--mymodule--test.html.twig: only emails by the module
+ *   "mymodule" with key "test".
+ *
+ * @see template_preprocess()
+ * @see template_preprocess_swiftmailer()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set messageObject = message.params.contact_message %}
+
+<html>
+<head>
+<style type="text/css">
+table tr td {
+  font-family: 'Varela Round', Arial, sans-serif;
+  font-size: 14px;
+}
+</style>
+</head>
+<body style="margin: 0; padding: 0;">
+	<table width="100%" cellpadding="0" cellspacing="0" border="0" align="left" style="background-color: #f7f7f7; text-align: left;">
+		<tbody>
+			<tr>
+				<td align="left" style="padding: 30px;">
+					<a href="{{ base_url }}">
+						<img style="max-width: 250px;" src="{{ logo_url }}" />
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="padding: 0 20px;">
+					<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center" style="font-family: 'Varela Round', Arial, sans-serif; background-color: #FFFFFF; border-width: 1px; border-style: solid; border-color: #e6e6e6; font-size: 14px;">
+						<tbody>
+							<tr>
+								<td align="left" style="padding: 20px 0 0 20px;">
+									<p style="text-align: left;">Hi Admin,</p>
+									<p style="text-align: left; margin: 0;">Someone sent a message using "Apply for Membership" form at (<a href="{{ form_url }}">{{ form_url }}</a>)</p>
+								</td>
+							</tr>
+							<tr>
+								<td align="left" style="padding: 20px;">
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_membership_class').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_membership_class').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_applicant_type').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_applicant_type').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_organization').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_organization').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_first_name').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_first_name').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_middle_name').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_middle_name').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_last_name').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_last_name').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_title').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_title').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_department').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_department').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_work_phone_number').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_work_phone_number').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_fax_number').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_fax_number').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_primary_email_address').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_primary_email_address').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_address').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_address').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_city').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_city').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_state').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_state').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_zip').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_zip').getValue()[0]['value'] }}</span>
+									</p>
+									<p style="text-align: left;">
+										<span style="margin-right: 10px;"><b>{{ messageObject.get('field_country').getFieldDefinition().getLabel() }}:</b></span>
+										<span>{{ messageObject.get('field_country').getValue()[0]['value'] }}</span>
+									</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" style="padding: 30px; color: #b0b0b0; font-size: 12px;">Copyright &copy; 2017 {{ site_name }}. All rights reserved.</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

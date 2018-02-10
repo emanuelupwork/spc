@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+	{%
+		set row_classes = [
+		  default_row_class ? 'views-row',
+		  loop.first ? 'first'
+		]
+	%}
+	{% set nodeId = row.content['#row']._entity.get('title').getEntity().id %}
+	{% set nodeUrl = path('entity.node.canonical', {'node': nodeId}) %}
+	
+	<div{{ row.attributes.addClass(row_classes) }}>
+		<a class="article-link" href="{{ nodeUrl }}">
+			{{ row.content }}
+		</a>
+	</div>
+{% endfor %}

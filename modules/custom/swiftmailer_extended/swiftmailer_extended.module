@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Swiftmailer extended module.
+ */
+ 
+/**
+ * Implements hook_theme_suggestions_HOOK() for swiftmailer.
+ */
+function swiftmailer_extended_theme_suggestions_swiftmailer_alter(array &$suggestions, array $variables) {
+
+  if (is_array($suggestions)){
+  	if (!empty($variables['message']['id']) && $variables['message']['id'] == 'contact_page_mail'){
+  		$id = $variables['message']['params']['contact_form']->id();
+  		$suggestions[] = 'swiftmailer__' . $variables['message']['module'] . '__' . $id;
+	}
+  }
+  
+  return $suggestions;
+}
+
+/**
+ * implements hook_mail_alter()
+ */
+function swiftmailer_extended_mail_alter(&$message) {
+	if (!empty($message['id']) && $message['id'] == 'contact_page_mail') {
+		$sender = $message['params']['sender'];
+		$formLabel = !empty($message['params']['contact_form']) ? $message['params']['contact_form']->label() : NULL;
+		
+		if ($message['key'] == 'page_mail'){
+			if (!empty($formLabel)){
+				$message['subject'] = \Drupal::config('system.site')->get('name') . ' - ' . $formLabel;
+			}
+		}
+	}
+}

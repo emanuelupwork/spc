@@ -1,0 +1,40 @@
+/*------------------------------------------------------------------
+[Content]
+------------------------------------------------------------------*/
+
+body.has-sidebar .content {
+	width: calc((((100% - 4.5vw) / 4) + 1.5vw) * 3);
+	padding-right: 1.5vw;
+}
+
+body:not(.page-home) .content {
+	border-top: 0.55vw solid $color-default;
+}
+
+.content .block {
+	margin-top: 1.5vw;
+}
+.content #block-spc-content {
+	margin-top: 0;
+}
+
+.content .block:not(#block-spc-content) .block-title {
+	font-size: 1.1vw;
+	font-weight: 700;
+	margin: 0;
+	text-transform: uppercase;
+	color: $color-light;
+	padding: 1.5vw;
+	text-align: left;
+	background: $color-primary;
+	letter-spacing: 1px;
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Content]
+------------------------------------------------------------------*/

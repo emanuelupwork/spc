@@ -1,0 +1,41 @@
+/*------------------------------------------------------------------
+[Page Tabs - Block]
+------------------------------------------------------------------*/
+
+#block-spc-local-tasks {
+	margin-bottom: 1.5vw;
+}
+#block-spc-local-tasks .nav-tabs {
+	border-color: $color-gray;
+}
+#block-spc-local-tasks .nav-tabs li a {
+	border-color: $color-gray;
+	background: $color-light-gray;
+	padding: 0.5vw 1vw;
+	font-size: 0.8vw;
+	font-weight: 300;
+	@include mix-vendor-prefix(border-radius, 0);
+}
+
+#block-spc-local-tasks .nav-tabs li a:hover {
+	color: $color-light;
+	background: $color-secondary;
+	border-color: $color-secondary;
+	border-bottom: transparent;
+}
+#block-spc-local-tasks .nav-tabs li.active a,
+#block-spc-local-tasks .nav-tabs li.active a:hover {
+	background-color: rgba($color-primary-light, 0.2);
+	color: $color-primary;
+	border-color: transparentize($color-primary, 0.8);
+	border-bottom: transparent;
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Page Tabs - Block]
+------------------------------------------------------------------*/

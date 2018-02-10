@@ -1,0 +1,154 @@
+/*------------------------------------------------------------------
+[Menu Links - Block]
+------------------------------------------------------------------*/
+
+.block .menu-links {
+	margin: 0 -0.75vw;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-wrap: wrap;
+    -webkit-box-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flexbox-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-box-direction: row;
+    -webkit-box-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flexbox-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.block .menu-links > li {
+	float: left;
+	width: 25%;
+	padding: 0 0.75vw;
+}
+
+.block .menu-links > li a {
+	display: block;
+	float: left;
+	width: 100%;
+	text-align: center;
+	padding: 0 1.5vw 1.5vw 1.5vw;
+}
+.block .menu-links > li:nth-child(4n + 1) a {
+	background: rgba($color-primary, 0.2);
+}
+.block .menu-links > li:nth-child(4n + 1) a:hover {
+	background: rgba($color-primary, 0.3);
+}
+
+.block .menu-links > li:nth-child(4n + 2) a {
+	background: rgba($color-secondary, 0.2);
+}
+.block .menu-links > li:nth-child(4n + 2) a:hover {
+	background: rgba($color-secondary, 0.3);
+}
+
+.block .menu-links > li:nth-child(4n + 3) a {
+	background: rgba($color-primary-light, 0.2);
+}
+.block .menu-links > li:nth-child(4n + 3) a:hover {
+	background: rgba($color-primary-light, 0.3);
+}
+
+.block .menu-links > li:nth-child(4n + 4) a {
+	background: rgba($color-secondary-light, 0.2);
+}
+.block .menu-links > li:nth-child(4n + 4) a:hover {
+	background: rgba($color-secondary-light, 0.3);
+}
+
+.block .menu-links > li a span.icon-box {
+	position: relative;
+	display: block;
+	width: 8vw;
+	height: 6vw;
+	margin: -1vw auto 1.5vw auto;
+	@include mix-transition(250ms, 0ms);
+}
+.block .menu-links > li a span.icon-box:before {
+	content: "\f0c5";
+	font-family: 'FontAwesome';
+	font-size: 2.6vw;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color: $color-light;
+	line-height: 1.0;
+	@include mix-vendor-prefix(transform, translate(-50%, -50%));
+}
+.block .menu-links > li a:hover span.icon-box {
+	@include mix-vendor-prefix(transform, scale(1.1));
+}
+
+.block .menu-links > li.icon-performance a span.icon-box:before {
+	content: "\f201";
+}
+.block .menu-links > li.icon-price-performance a span.icon-box:before {
+	content: "\f155";
+}
+.block .menu-links > li:nth-child(4n + 1) a span.icon-box {
+	background: $color-primary;
+}
+.block .menu-links > li:nth-child(4n + 2) a span.icon-box {
+	background: $color-secondary;	
+}
+.block .menu-links > li:nth-child(4n + 3) a span.icon-box {
+	background: $color-primary-light;
+}
+.block .menu-links > li:nth-child(4n + 4) a span.icon-box {
+	background: $color-secondary-light;
+}
+
+.block .menu-links > li a span.title {
+	display: block;
+	margin: 0 auto 1.5vw 0;
+	font-weight: 700;
+	font-size: 2.6vw;
+	text-transform: uppercase;
+	line-height: 1.0;
+}
+
+.block .menu-links > li a span.desc-box {
+	display: block;
+	margin: 1.5vw auto 0 auto;
+	font-size: 1.2vw;
+	text-transform: uppercase;
+	line-height: 1.0;
+}
+.block .menu-links > li a span.desc-box:first-child {
+	margin-top: 0;
+}
+
+.block .menu-links > li:nth-child(4n + 1) a span.title,
+.block .menu-links > li:nth-child(4n + 1) a span.desc-box {
+	color: $color-primary;
+}
+.block .menu-links > li:nth-child(4n + 2) a span.title,
+.block .menu-links > li:nth-child(4n + 2) a span.desc-box {
+	color: $color-secondary;
+}
+.block .menu-links > li:nth-child(4n + 3) a span.title,
+.block .menu-links > li:nth-child(4n + 3) a span.desc-box {
+	color: $color-primary-light;
+}
+.block .menu-links > li:nth-child(4n + 4) a span.title,
+.block .menu-links > li:nth-child(4n + 4) a span.desc-box {
+	color: $color-secondary-light;
+}
+
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Menu Links - Block]
+------------------------------------------------------------------*/

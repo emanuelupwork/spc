@@ -1,0 +1,121 @@
+/*------------------------------------------------------------------
+[Footer]
+------------------------------------------------------------------*/
+
+.footer {
+	background: rgba($color-default, 0.1);
+	border-top: 0.55vw solid $color-default;
+	width: calc(100% + 3vw);
+	margin: 1.5vw -1.5vw 0 -1.5vw;
+}
+.footer .footer-container {
+	padding: 0;
+}
+.footer .footer-container > [id^="block"] {
+	float: left;
+	padding: 3vw 1.5vw;
+}
+
+.footer #block-sitebranding .block-content,
+.footer #block-contactdetails .block-content,
+.footer #block-footermenu .block-content {
+	text-transform: uppercase;
+	font-size: 1vw;
+	color: $color-primary;
+}
+
+/*--- Logo ---*/
+.footer #block-sitebranding {
+	width: 25%;
+	padding-right: 3vw;
+	padding-top: 3.9vw;
+}
+.footer #block-sitebranding a {
+	display: block;
+	float: left;
+}
+/*--- END Logo ---*/
+
+/*--- Contact Details ---*/
+.footer #block-contactdetails {
+	width: 25%;
+}
+.footer #block-contactdetails p {
+	line-height: 2.0;
+	margin: 0;
+}
+/*--- END Contact Details ---*/
+
+/*--- Footer Menu ---*/
+.footer #block-footermenu {
+	width: 50%;
+}
+.footer #block-footermenu > ul {
+	display: block;
+	margin: 0;
+	float: left;
+}
+.footer #block-footermenu > ul li {
+	float: left;
+	width: 33.33333%;
+	line-height: 2.0;
+	font-size: 1vw;
+	text-transform: uppercase;
+}
+.footer #block-footermenu > ul li a {
+	display: block;
+	position: relative;
+	padding-left: 1vw;
+}
+.footer #block-footermenu > ul li a:before {
+	font-family: 'FontAwesome';
+	content: "\f105";
+	position: absolute;
+	left: 0;
+	top: 0;
+	line-height: 2.0;
+}
+
+.footer #block-footermenu > ul li a {
+	color: $color-primary;
+}
+.footer #block-footermenu > ul li:hover a,
+.footer #block-footermenu > ul li a.is-active {
+	color: $color-secondary;
+}
+
+/*--- END Footer Menu ---*/
+
+/*--- Copyright ---*/
+.footer #block-copyright {
+	padding-top: 1.5vw;
+	padding-bottom: 1.5vw;
+	float: left;
+	width: 100%;
+	background: $color-primary-light;
+	color: $color-light;
+	text-align: center;
+	letter-spacing: 0;
+}
+.footer #block-copyright p {
+	margin: 0;
+	font-size: 0.75vw;
+}
+.footer #block-copyright p a {
+	font-weight: 700;
+	color: $color-light;
+	text-decoration: underline;
+}
+.footer #block-copyright p a:hover {
+	text-decoration: none;
+}
+/*--- END Copyright ---*/
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Footer]
+------------------------------------------------------------------*/

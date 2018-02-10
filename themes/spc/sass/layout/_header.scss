@@ -1,0 +1,176 @@
+/*------------------------------------------------------------------
+[Header]
+------------------------------------------------------------------*/
+
+.header .header-container {
+	padding-top: 1.5vw;
+}
+
+/*--- Logo ---*/
+.header #block-spc-branding {
+	float: left;
+	width: 50%;
+}
+.header #block-spc-branding a {
+	display: block;
+	float: left;
+}
+/*--- END Logo ---*/
+
+/*--- Top Links Menu ---*/
+.header #block-toplinksmenu {
+	float: left;
+}
+.header #block-toplinksmenu ul {
+	margin: 0;
+	float: left;
+	width: 100%;
+}
+.header #block-toplinksmenu ul li {
+	float: left;
+	padding: 0.7vw 1.3vw;
+}
+.header #block-toplinksmenu ul li:first-child {
+	padding-left: 0;
+}
+.header #block-toplinksmenu ul li a {
+	display: block;
+	float: left;
+	font-size: 0.85vw;
+	line-height: 1.0;
+	text-transform: uppercase;
+	color: $color-dark-gray;
+}
+.header #block-toplinksmenu ul li a:hover,
+.header #block-toplinksmenu ul li a.is-active {
+	color: $color-secondary;
+}
+/*--- END Top Links Menu ---*/
+
+/*--- Top User Menu ---*/
+.header #block-topusermenu {
+	float: right;
+}
+.header #block-topusermenu ul {
+	margin: 0;
+	float: left;
+	width: 100%;
+}
+.header #block-topusermenu ul li {
+	float: left;
+	padding-left: 2vw;
+}
+.header #block-topusermenu ul li:first-child {
+	padding-left: 0;
+}
+.header #block-topusermenu ul li a {
+	float: left;
+	font-size: 0.85vw;
+	line-height: 1.0;
+	padding: 0.7vw 1.5vw;
+	text-transform: uppercase;
+	background: $color-light-gray;
+	color: $color-dark-gray;
+}
+.header #block-topusermenu ul li a:hover,
+.header #block-topusermenu ul li a.is-active {
+	color: $color-secondary;
+	background: rgba($color-secondary, 0.1);
+}
+/*--- END Top User Menu ---*/
+
+/*--- Main Menu ---*/
+.header #block-mainmenu {
+	float: left;
+	width: 50%;
+	margin-top: 1.5vw;
+}
+.header #block-mainmenu #mainMenu {
+	padding: 0;
+}
+.header #block-mainmenu #mainMenu ul.navbar-nav {
+	float: left;
+	width: 100%;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-wrap: wrap;
+    -webkit-box-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flexbox-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-box-direction: row;
+    -webkit-box-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flexbox-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.header #block-mainmenu #mainMenu ul.navbar-nav li {
+	min-width: 33.33333%;
+	-webkit-flex-grow: 1;
+	-moz-flex-grow: 1;
+	-ms-flex-grow: 1;
+	flex-grow: 1;
+}
+.header #block-mainmenu #mainMenu ul.navbar-nav li a {
+	position: relative;
+	font-size: 1.25vw;
+	font-weight: 700;
+	background: $color-primary;
+	color: $color-light;
+	text-transform: uppercase;
+	padding: 2vw 2vw 3vw 2vw;
+	text-align: center;
+	border-left: 1px solid $color-light;
+	margin-bottom: 1.5vw;
+}
+.header #block-mainmenu #mainMenu ul.navbar-nav li:first-child a {
+	border-left: 0;
+}
+.header #block-mainmenu #mainMenu ul.navbar-nav li a:before {
+	font-family: 'FontAwesome';
+	content: "\f107";
+	font-size: 2vw;
+	position: absolute;
+	left: 50%;
+	bottom: 1vw;
+	@include mix-vendor-prefix(transform, translate(-50%, 0));
+	@include mix-transition(250ms, 0ms);
+}
+.header #block-mainmenu #mainMenu ul.navbar-nav li a:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -1.5vw;
+	width: 100%;
+	height: 1.5vw;
+	@include mix-transition(250ms, 0ms);
+}
+
+.header #block-mainmenu #mainMenu ul.navbar-nav li a:hover,
+.header #block-mainmenu #mainMenu ul.navbar-nav li.is-active-trail a {
+	background: $color-secondary;
+}
+.header #block-mainmenu #mainMenu ul.navbar-nav li a:hover:before,
+.header #block-mainmenu #mainMenu ul.navbar-nav li.is-active-trail a:before {
+	bottom: 2px;
+}
+.header #block-mainmenu #mainMenu ul.navbar-nav li a:hover:after,
+.header #block-mainmenu #mainMenu ul.navbar-nav li.is-active-trail a:after {
+	background: rgba($color-secondary, 0.5);
+}
+
+/*--- END Main Menu ---*/
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Header]
+------------------------------------------------------------------*/

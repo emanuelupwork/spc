@@ -1,0 +1,192 @@
+/*------------------------------------------------------------------
+[Contact Us - Block]
+------------------------------------------------------------------*/
+
+.path-contact-us .status-messages-block ~ div,
+.path-contact-us #block-spc-content {
+	float: left;
+	width: 50%;
+}
+
+.path-contact-us #block-contactblock {
+	margin: 0;
+	padding: 1.5vw;
+	border: 0;
+/*	border: 1px solid $color-gray;*/
+	background: $color-light-gray;
+	min-height: 28vw;
+}
+.path-contact-us #block-contactblock #contact-message-contact-us-form {
+	display: block;
+	float: left;
+	margin: 0 -0.75vw;
+}
+
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper {
+	float: left;
+	width: 50%;
+	padding: 0 0.75vw;
+	padding-bottom: 1.5vw;
+}
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper .form-item {
+	float: left;
+	width: 100%;
+}
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper .form-item label {
+/*	display: none;*/
+}
+
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper.field--name-field-comments,
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper#edit-actions {
+	width: 100%;
+}
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper .form-item input,
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper .form-item textarea {
+	float: left;
+	width: 100%;
+}
+
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper#edit-actions {
+	padding-bottom: 0;
+}
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper .button {
+	@extend %btn;
+	@extend %btn-primary;
+	font-size: 1vw;
+	padding: 0.7vw 2vw;
+}
+.path-contact-us #block-contactblock #contact-message-contact-us-form > .form-wrapper .button:hover {
+	@extend %btn-primary-hover;
+}
+
+.path-contact-us #block-spc-content {
+	padding: 0 0 0 1.5vw;
+}
+.path-contact-us #block-spc-content .contact-details-page {
+	position: relative;
+	padding: 1.5vw;
+	background: rgba($color-primary-light, 0.15);
+	min-height: 28vw;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-wrap: wrap;
+    -webkit-box-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flexbox-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    
+    -moz-box-direction: column;
+    -webkit-box-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flexbox-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    
+    -webkit-box-pack: justify;
+    -webkit-justify-content: center;
+    -ms-flex-pack: justify;
+    -moz-box-pack: justify;
+    justify-content: center;
+    
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.path-contact-us #block-spc-content .contact-details-page:before {
+	font-family: 'FontAwesome';
+	font-size: 2.2vw;
+	content: "\f0f7";
+	position: absolute;
+	top: -0.75vw;
+	left: 50%;
+	width: 7vw;
+	height: 5vw;
+	background: $color-primary-light;
+	color: $color-light;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-wrap: wrap;
+    -webkit-box-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flexbox-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    
+    -moz-box-direction: column;
+    -webkit-box-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flexbox-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+   
+    -webkit-box-pack: justify;
+    -webkit-justify-content: center;
+    -ms-flex-pack: justify;
+    -moz-box-pack: justify;
+    justify-content: center;
+    
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    
+	@include mix-vendor-prefix(transform, translate(-50%, 0));
+}
+.path-contact-us #block-spc-content .contact-details-page .contact-address {
+	position: relative;
+	padding-left: 3vw;
+	margin-bottom: 1.5vw;
+}
+.path-contact-us #block-spc-content .contact-details-page .contact-address:before {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	font-family: 'FontAwesome';
+	content: "\f041";
+	font-size: 3vw;
+	color: $color-primary-light;
+	@include mix-vendor-prefix(transform, translate(0, -50%));
+}
+
+.path-contact-us #block-spc-content .contact-details-page .icon-phone,
+.path-contact-us #block-spc-content .contact-details-page .icon-fax {
+	position: relative;
+	display: block;
+	padding-left: 3vw;
+}
+.path-contact-us #block-spc-content .contact-details-page .icon-phone:before,
+.path-contact-us #block-spc-content .contact-details-page .icon-fax:before {
+	position: absolute;
+	top: 50%;
+	left: 0.6vw;
+	font-size: 1vw;
+	color: $color-primary-light;
+	@include mix-vendor-prefix(transform, translate(0, -50%));
+}
+.path-contact-us #block-spc-content .contact-details-page .icon-phone:before {
+	font-family: 'FontAwesome';
+	content: "\f095";
+}
+.path-contact-us #block-spc-content .contact-details-page .icon-fax:before {
+	font-family: 'FontAwesome';
+	content: "\f1ac";
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Contact Us - Block]
+------------------------------------------------------------------*/

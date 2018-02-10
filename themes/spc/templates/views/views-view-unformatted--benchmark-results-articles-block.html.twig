@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+  {%
+    set row_classes = [
+    	'js-expand-container',
+    	'collapsed',
+      	default_row_class ? 'views-row',
+    ]
+  %}
+  {% set articleTitle = row.content['#row']._entity.get('title').value %}
+  {% set bodyValue = row.content['#row']._entity.get('body').value %}
+  {% set linkUrl = row.content['#row']._entity.get('field_link').getValue()[0].uri %}
+  
+  {% set linkTitle %}
+  	<span class="icon-box"></span>
+	<span class="title">{{ articleTitle }}</span>
+	<span class="desc-box">
+		{% autoescape %}
+		{{ bodyValue|raw }}
+		{% endautoescape %}
+	</span>
+	<div class="expand-content-box">
+		<button href="#" class="js-btn-expand-content btn-read-more-icon" title="Click to Expand/Collapse Content" type="button">
+      		<span class="btn-read-more-content-icon">
+      			<i class="collapsed fa fa fa-angle-double-down" aria-hidden="true"></i>
+      			<i class="expanded fa fa fa-angle-double-up" aria-hidden="true"></i>
+      		</span>
+	    </button>
+	</div>
+  {% endset %}  
+  
+  {% set linkElement = link(linkTitle, linkUrl, {'class':['article-custom-link']}) %}
+
+  <li{{ row.attributes.addClass(row_classes) }}>
+  	{% if linkUrl != null %}
+		{{ linkElement }}
+	{% endif %}
+  </li>
+{% endfor %}

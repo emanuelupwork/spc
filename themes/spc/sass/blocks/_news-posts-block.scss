@@ -1,0 +1,118 @@
+/*------------------------------------------------------------------
+[News Posts - Block]
+------------------------------------------------------------------*/
+
+.article-news-list-box {
+	margin: 0 -0.75vw;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-wrap: wrap;
+    -webkit-box-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flexbox-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-box-direction: row;
+    -webkit-box-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flexbox-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.article-news-list-box .article-box {
+	padding: 0 0.75vw;
+	margin: 0 0 1.5vw 0;
+}
+.article-news-list-box article {
+	padding: 1.5vw;
+	height: 100%;
+}
+.article-news-list-box article.type-press-release {
+	background: $color-light-gray;
+}
+.article-news-list-box article.type-article {
+	background: rgba($color-secondary, 0.1);
+}
+.article-news-list-box article.type-presentation {
+	background: rgba($color-primary, 0.1);
+}
+
+.article-news-list-box article .article-title {
+	margin: 0 0 1.5vw 0;
+	text-transform: uppercase;
+	font-size: 1.5vw;
+	font-weight: 700;
+	color: $color-primary;
+}
+.article-news-list-box article .article-title a:hover {
+	color: $color-secondary;
+}
+
+.article-news-list-box article .article-content {
+	position: relative;
+}
+.article-news-list-box article .article-content > div {
+	float: left;
+	width: 70%;
+	padding-left: 1.5vw;
+}
+.article-news-list-box article .article-content > div:first-child {
+	width: 30%;
+	padding-left: 0;
+}
+.article-news-list-box article .article-content > div:first-child .taxonomy-box a {
+	display: block;
+	padding: 0.75vw;
+	background-color: $color-light;
+	border: 1px solid transparentize($color-primary, 0.8);
+}
+
+.article-news-list-box article .article-content > div p {
+	font-size: 0.8vw;
+	font-weight: 300;
+	margin: 0 0 1.5vw 0;
+}
+.article-news-list-box article .article-content > div p:last-child {
+	margin: 0;
+}
+
+.article-news-list-box article .article-content .btn-read-more {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font-size: 1vw;
+	line-height: 1.0;
+}
+.article-news-list-box article .article-content .btn-read-more:hover {
+	color: $color-secondary;
+}
+
+/*--- More Link ---*/
+.article-news-box .more-link {
+	display: block;
+	float: left;
+	width: 100%;
+	padding: 0;
+}
+.article-news-box .more-link .more-link-container {
+	display: block;
+	background: rgba($color-default, 0.1);
+	text-align: center;
+	padding: 0.75vw 0;
+}
+.article-news-box .more-link .more-link-container .btn-read-more-icon {
+	display: inline-block;
+}
+/*--- END More Link ---*/
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END News Posts - Block]
+------------------------------------------------------------------*/

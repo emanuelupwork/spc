@@ -1,0 +1,25 @@
+global-styling:
+  version: 1.0
+  css:
+    theme:
+      libs/bootstrap/bootstrap.min.css: {minified: true}
+      libs/font-awesome/font-awesome.css: {minified: false}
+      libs/bootstrap-validator/css/bootstrapValidator.min.css: {minified: false}
+      libs/intl-tel-input/build/css/intlTelInput.css: {minified: false}
+      libs/jquery-kwicks/jquery-kwicks.css: {minified: false}
+      css/style.css: {minified: false}
+global-scripts:
+  version: 1.0
+  header: true
+  js:
+      libs/bootstrap/bootstrap.min.js: {preprocess: false, minified: true, attributes: { async: true} }
+      libs/jquery-kwicks/jquery.kwicks.min.js: {preprocess: false, minified: true, attributes: { async: true} }
+      libs/bootstrap-validator/js/bootstrapValidator.min.js: {preprocess: false, minified: true, attributes: { async: true} }
+      libs/intl-tel-input/build/js/intlTelInput.min.js: {preprocess: false, minified: true, attributes: { async: true} }
+      libs/intl-tel-input/build/js/utils.js: {preprocess: false, minified: true, attributes: { async: true} }
+      libs/jquery-resizeend/jquery-resizeEnd.min.js: {preprocess: false, minified: true, attributes: { async: true} }
+      js/global.js: {preprocess: false, minified: false, attributes: { async: true} }
+      js/slider.js: {preprocess: false, minified: false, attributes: { async: true} }
+      js/validate.js: {preprocess: false, minified: false, attributes: { async: true} }
+  dependencies:
+    - core/jquery

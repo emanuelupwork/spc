@@ -1,0 +1,68 @@
+// Box Shadows
+@mixin mix-box-shadow($top, $left, $blur, $spread, $color, $inset: "") {
+    -webkit-box-shadow: $top $left $blur $spread $color #{$inset};
+    -moz-box-shadow: $top $left $blur $spread $color #{$inset};
+    box-shadow: $top $left $blur $spread $color #{$inset};
+}
+
+// Text Shadows
+@mixin mix-text-shadow($horiz-shadow, $vert-shadow, $blur, $color) {
+    -webkit-text-shadow: $horiz-shadow $vert-shadow $blur $color;
+    -moz-text-shadow: $horiz-shadow $vert-shadow $blur $color;
+    text-shadow: $horiz-shadow $vert-shadow $blur $color;
+}
+
+// Transitions
+@mixin mix-transition($delay-in, $delay-out) { 
+    -webkit-transition: all $delay-in ease-out $delay-out;
+    -moz-transition: all $delay-in ease-out $delay-out;
+    transition: all $delay-in ease-out $delay-out;
+}
+
+// Border Radius
+@mixin mix-border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+// Borders
+@mixin mix-border($top, $right, $bottom, $left, $border-style: null, $border-color: null) {
+    border-width: $top $right $bottom $left;
+    
+	@if $border-style != null {
+        border-style: $border-style;
+    }
+    @if $border-color != null {
+        border-color: $border-color;
+    }
+}
+
+// Font Builder
+@mixin mix-font($font, $weight: normal, $style: normal) {
+	font-family: $font;
+	font-weight: $weight;
+	font-style: $style;
+}
+
+// Property Vendor Prefix
+@mixin mix-vendor-prefix($property, $value) {
+    @if $property != opacity {
+		-webkit-#{$property}: $value;
+	    -moz-#{$property}: $value;
+	    -o-#{$property}: $value;
+	    -ms-#{$property}: $value;
+	    #{$property}: $value;
+    } @else {
+		-moz-#{$property}: $value;
+	    -khtml-#{$property}: $value;
+	    #{$property}: $value;
+    }
+}
+
+// Rotate
+@mixin mix-rotate($deg) {
+	-ms-transform: rotate($deg); /* IE 9 */
+    -webkit-transform: rotate($deg); /* Safari */
+    transform: rotate($deg);
+}

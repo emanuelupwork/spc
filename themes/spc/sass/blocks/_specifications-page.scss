@@ -1,0 +1,49 @@
+/*------------------------------------------------------------------
+[Specifications - Page]
+------------------------------------------------------------------*/
+
+.specifications-page .category-box {
+	margin-bottom: 3vw;	
+}
+.specifications-page .category-box:last-child {
+	margin-bottom: 0;
+}
+
+.specifications-page .category-box .article-title {
+	font-size: 1.2vw;
+	text-transform: uppercase;
+	text-align: center;
+	margin: 0 0 1.5vw 0;
+	color: $color-primary;
+	padding: 1.5vw;
+	background: rgba($color-primary, 0.2);;
+}
+
+.specifications-page .specification-item-box .spec-content p {
+	font-weight: 300;
+}
+.specifications-page .specification-item-box .spec-content p a {
+	text-decoration: underline;
+}
+.specifications-page .specification-item-box .spec-content p a:hover {
+	text-decoration: none;
+	color: $color-secondary;
+}
+
+.specifications-page .specification-item-box .spec-info {
+	margin-top: 1.5vw;
+}
+.specifications-page .specification-item-box .spec-info table.table-results tr td .btn {
+	display: inline-block;
+	margin-right: 1vw;
+	min-width: 50%;
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Specifications - Page]
+------------------------------------------------------------------*/

@@ -1,0 +1,65 @@
+/*------------------------------------------------------------------
+[Sidebar]
+------------------------------------------------------------------*/
+
+.sidebar {
+	float: left;
+	width: calc((100% - 4.5vw) / 4);
+}
+.sidebar .sidebar-container > * {
+	margin-bottom: 1.5vw;
+	background: $color-light-gray;
+}
+.sidebar [id^="block"] h2 {
+	font-size: 1.1vw;
+	font-weight: 700;
+	margin: 0;
+	text-transform: uppercase;
+	color: $color-light;
+	padding: 1.5vw;
+	text-align: left;
+	background: $color-primary;
+	letter-spacing: 1px;
+}
+.sidebar [id^="block"] p {
+	font-size: 0.85vw;
+	font-weight: 300;
+	margin: 0.75vw 0 0 0;
+	color: $color-dark-gray;
+	@include mix-transition(250ms, 0ms);
+}
+.sidebar [id^="block"] .block-content,
+.sidebar [id^="block"] > ul {
+	padding: 1.5vw;
+	margin: 0;
+}
+.sidebar [id^="block"] a,
+.sidebar [id^="block"] .block-content .views-field-title {
+	display: block;
+	font-size: 1vw;
+	font-weight: 700;
+	color: $color-primary;
+	text-transform: uppercase;
+	margin: 0 0 0.75vw 0;
+	@include mix-transition(250ms, 0ms);
+}
+.sidebar [id^="block"] .block-content p,
+.sidebar [id^="block"] .block-content .views-field-body {
+	text-transform: none;
+	font-weight: 300;
+}
+.sidebar [id^="block"] .block-content p:first-child {
+	margin: 0;
+}
+.sidebar [id^="block"] a:hover {
+	color: $color-secondary;
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Sidebar]
+------------------------------------------------------------------*/

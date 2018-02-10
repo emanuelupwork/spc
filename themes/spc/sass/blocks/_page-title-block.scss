@@ -1,0 +1,38 @@
+/*------------------------------------------------------------------
+[Page Title - Block]
+------------------------------------------------------------------*/
+
+#block-spc-page-title,
+.view-title-box {
+	margin: 0 0 1.5vw 0;
+}
+#block-spc-page-title .block-content,
+.view-title-box .view-title-content {
+	padding: 3vw 1.5vw;
+	background: $color-light-gray;
+}
+#block-spc-page-title .block-content h1,
+.view-title-box .view-title-content h1 {
+	display: block;
+	margin: 0;
+	color: $color-primary;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 2vw;
+}
+#block-spc-page-title .block-content h1 span.default-text,
+.view-title-box .view-title-content h1 span.default-text {
+	display: inline-block;
+	vertical-align: middle;
+	text-transform: none;
+	font-size: 1.5vw;
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Page Title - Block]
+------------------------------------------------------------------*/

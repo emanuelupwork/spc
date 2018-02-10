@@ -1,0 +1,158 @@
+/*------------------------------------------------------------------
+[Node - Default]
+------------------------------------------------------------------*/
+
+.node-article-box .node-content-box {
+	font-size: 1vw;
+	font-weight: 300;
+	display: block;
+	float: left;
+	width: 100%;
+	padding: 1.5vw;
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: $color-gray;
+	background: lighten($color-light-gray, 3%);
+}
+.node-article-box .node-content-box h1,
+.node-article-box .node-content-box h2,
+.node-article-box .node-content-box h3,
+.node-article-box .node-content-box h4,
+.node-article-box .node-content-box h5 {
+	font-weight: 700;
+	margin: 1vw 0;
+	text-transform: uppercase;
+	color: $color-primary;
+	padding: 1.5vw;
+	background: rgba($color-primary, 0.2);
+
+}
+
+.node-article-box .node-content-box h1:first-child,
+.node-article-box .node-content-box h2:first-child,
+.node-article-box .node-content-box h3:first-child,
+.node-article-box .node-content-box h4:first-child,
+.node-article-box .node-content-box h5:first-child {
+	margin-top: 0;
+}
+
+.node-article-box .node-content-box h1 {
+	font-size: 1.6vw;
+}
+.node-article-box .node-content-box h2 {
+	font-size: 1.4vw;
+}
+.node-article-box .node-content-box h3 {
+	font-size: 1.2vw;
+}
+.node-article-box .node-content-box h4 {
+	font-size: 1.0vw;
+}
+.node-article-box .node-content-box h5 {
+	font-size: 0.8vw;
+}
+
+.node-article-box .node-content-box p a {
+	text-decoration: underline;
+	color: $color-secondary;
+}
+.node-article-box .node-content-box p a:hover {
+	text-decoration: none;
+}
+
+.node-article-box .node-content-box > div > img {
+	display: inline;
+	float: left;
+	margin: 0 1.5vw 1.5vw 0;
+}
+
+/*--- Links ---*/
+.node-article-box .node-content-box .link-list {
+	margin: 0 -0.75vw;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-wrap: wrap;
+    -webkit-box-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flexbox-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-box-direction: row;
+    -webkit-box-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flexbox-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.node-article-box .node-content-box .link-box {
+	float: left;
+	min-width: 50%;
+	padding: 0.75vw;
+	@include mix-vendor-prefix(flex-grow, 1);
+}
+.node-article-box .node-content-box .link-box:nth-child(1),
+.node-article-box .node-content-box .link-box:nth-child(2) {
+	padding-top: 0.5vw;
+}
+
+.node-article-box .node-content-box .link-box .link-content {
+	position: relative;
+	display: block;
+	float: left;
+	width: 100%;
+	text-align: left;
+	padding: 1.5vw;
+	background: $color-gray;
+}
+.node-article-box .node-content-box .link-box .link-content:after {
+	font-family: 'FontAwesome';
+	font-size: 1.8vw;
+	content: "\f08e";
+	position: absolute;
+	top: -0.75vw;
+	right: 1.5vw;
+	width: 4vw;
+	height: 4vw;
+	background: $color-default;
+	color: $color-light;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-wrap: wrap;
+    -webkit-box-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flexbox-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-box-direction: column;
+    -webkit-box-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flexbox-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align-content: center;
+    -webkit-align-content: center;
+    -ms-flex-align-content: center;
+    align-content: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: center;
+    -ms-flex-pack: justify;
+    -moz-box-pack: justify;
+    justify-content: center;
+}
+
+/*--- END Links ---*/
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Node - Default]
+------------------------------------------------------------------*/

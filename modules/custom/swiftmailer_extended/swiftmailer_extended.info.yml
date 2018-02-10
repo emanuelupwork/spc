@@ -1,0 +1,9 @@
+name: Swiftmailer Extended Module
+description: Override some functions of swiftmailer.
+package: Custom
+
+type: module
+core: 8.x
+
+dependencies:
+  - swiftmailer:swiftmailer

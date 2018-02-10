@@ -1,0 +1,36 @@
+/*------------------------------------------------------------------
+[Benchmark Results Article - Block]
+------------------------------------------------------------------*/
+
+.block-views-blockbenchmark-results-benchmark-results-article .block-content .article-link {
+	display: block;
+	margin: 0;
+}
+.block-views-blockbenchmark-results-benchmark-results-article .block-content .views-field-body {
+	position: relative;
+}
+.block-views-blockbenchmark-results-benchmark-results-article .block-content .views-field-body:after  {
+	font-family: 'FontAwesome';
+	content: "\f101";
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font-size: 1vw;
+	font-weight: 500;
+	color: $color-primary;
+	line-height: 1.0;
+	margin: 0;
+}
+.block-views-blockbenchmark-results-benchmark-results-article .block-content .article-link:hover .views-field-body p,
+.block-views-blockbenchmark-results-benchmark-results-article .block-content .article-link:hover .views-field-body:after {
+	color: $color-secondary;
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Benchmark Results Article - Block]
+------------------------------------------------------------------*/

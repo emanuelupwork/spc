@@ -1,0 +1,106 @@
+/*------------------------------------------------------------------
+[Membership Page - Page]
+------------------------------------------------------------------*/
+
+.membership-page .membership-list {
+	margin: 0 -0.75vw;
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -moz-box-wrap: wrap;
+    -webkit-box-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flexbox-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -moz-box-direction: row;
+    -webkit-box-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flexbox-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.membership-page .membership-type-box {
+	float: left;
+	width: 33.33333%;
+	padding: 0 0.75vw;
+}
+
+.membership-page .membership-type-box:nth-child(3n + 1) article {
+	background: rgba($color-secondary, 0.2);
+}
+.membership-page .membership-type-box:nth-child(3n + 2) article {
+	background: rgba($color-primary, 0.2);
+}
+.membership-page .membership-type-box:nth-child(3n + 3) article {
+	background: rgba($color-primary-light, 0.2);
+}
+
+.membership-page .membership-type-box article {
+	color: $color-primary;
+	height: 100%;
+	@include mix-transition(250ms, 0ms);
+}
+.membership-page .membership-type-box:nth-child(3n + 1) article {
+	color: $color-secondary;
+}
+.membership-page .membership-type-box article:hover {
+	@include mix-vendor-prefix(transform, scale(1.03));
+}
+
+.membership-page .membership-type-box article .node-content {
+	position: relative;
+	text-align: center;
+	height: 100%;
+	padding-bottom: 5vw;
+}
+
+.membership-page .membership-type-box article .node-content h2 {
+	margin: 0;
+	font-size: 2vw;
+	text-transform: uppercase;
+	padding: 1.5vw;
+	text-align: center;
+}
+.membership-page .membership-type-box article .node-content h2 a {
+	color: $color-light;
+}
+
+.membership-page .membership-type-box article .node-content h2 a:hover {
+	color: $color-default;
+}
+
+.membership-page .membership-type-box:nth-child(3n + 1) article .node-content h2 {
+	background: $color-secondary;
+}
+.membership-page .membership-type-box:nth-child(3n + 2) article .node-content h2 {
+	background: $color-primary;
+}
+.membership-page .membership-type-box:nth-child(3n + 3) article .node-content h2 {
+	background: $color-primary-light
+}
+
+.membership-page .membership-type-box article .node-content .node-content-box {
+	padding: 1.5vw;
+	text-align: left;
+}
+
+.membership-page .membership-type-box article .node-content .btn-read-more-icon {
+	position: absolute;
+	left: 50%;
+	bottom: 1.5vw;
+	display: inline-block;
+	margin: 0;
+	@include mix-vendor-prefix(transform, translate(-50%, 0));
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Membership Page - Page]
+------------------------------------------------------------------*/

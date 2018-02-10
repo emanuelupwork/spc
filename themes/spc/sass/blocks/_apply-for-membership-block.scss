@@ -1,0 +1,118 @@
+/*------------------------------------------------------------------
+[Apply for Membership - Block]
+------------------------------------------------------------------*/
+
+.page-apply-for-membership #block-spc-content {
+	font-size: 1vw;
+	font-weight: 300;
+	display: block;
+	float: left;
+	width: 100%;
+	padding: 1.5vw;
+	border-width: 1px 1px 1px 1px;
+	border-style: solid;
+	border-color: $color-gray;
+	background: lighten($color-light-gray, 3%);
+}
+
+.page-apply-for-membership #block-spc-content ~ div {
+	float: left;
+	width: 100%;
+}
+.page-apply-for-membership #block-apply-for-membership-block {
+	padding: 0 1.5vw;
+/*	border: 1px solid $color-gray;*/
+	background: $color-light-gray;
+}
+.page-apply-for-membership #block-apply-for-membership-block #contact-message-apply-for-membership-form {
+	display: block;
+	float: left;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box {
+	margin: 0 -0.75vw;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box h3 {
+	display: block;
+	font-size: 1.2vw;
+	font-weight: 700;
+	margin: 0 -0.75vw 1.5vw -0.75vw;
+	text-transform: uppercase;
+	color: $color-primary;
+	padding: 1.5vw;
+	background: rgba($color-primary, 0.2);
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box > .form-wrapper {
+	float: left;
+	padding: 0 0.75vw;
+	padding-bottom: 1.5vw;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box.details-box > .form-wrapper {
+	width: 33.33333%;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box.technical-box > .form-wrapper {
+	width: 25%;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box > .form-wrapper .form-item {
+	float: left;
+	width: 100%;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box > .form-wrapper .form-item .description {
+	font-size: 0.8vw;
+	margin-top: 0.5vw;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box > .form-wrapper .form-item .description a {
+	color: $color-secondary;
+	text-decoration: underline;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box > .form-wrapper .form-item .description a:hover {
+	text-decoration: none;
+}
+
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box.details-box > #edit-field-statement-of-eligibility-wrapper {
+	width: 100%;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box.details-box > #edit-field-statement-of-eligibility-wrapper .form-item {
+	text-align: left;
+}
+.page-apply-for-membership #edit-field-statement-of-eligibility-wrapper .form-item label {
+	width: 100%;
+}
+.page-apply-for-membership #edit-field-statement-of-eligibility-wrapper .form-item input {
+	display: inline;
+}
+.page-apply-for-membership #edit-field-statement-of-eligibility-wrapper .form-item .description {
+	display: inline;
+	margin: 0;
+}
+
+
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box.technical-box > #edit-field-address-wrapper {
+	width: 50%;
+}
+.page-apply-for-membership #block-apply-for-membership-block .form-group-box.technical-box > #edit-field-address-wrapper textarea {
+	max-width: 100%;
+}
+
+.page-apply-for-membership #block-apply-for-membership-block #edit-actions {
+	width: 100%;
+	padding-bottom: 0;
+	margin-bottom: 1.5vw;
+}
+.page-apply-for-membership #block-apply-for-membership-block #edit-actions .button {
+	@extend %btn;
+	@extend %btn-primary;
+	font-size: 1vw;
+	padding: 0.7vw 2vw;
+}
+.page-apply-for-membership #block-apply-for-membership-block #edit-actions .button:hover {
+	@extend %btn-primary-hover;
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Apply for Membership - Block]
+------------------------------------------------------------------*/

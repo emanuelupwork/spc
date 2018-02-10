@@ -1,0 +1,65 @@
+/*------------------------------------------------------------------
+[Node Article News - Default]
+------------------------------------------------------------------*/
+
+.article-news-default .node-content-box {
+	padding: 0;
+} 
+.node-article-box .node-sponsor-box {
+	padding: 0;
+}
+.node-article-box .node-sponsor-box > div {
+	float: left;
+	width: 100%;
+}
+.node-article-box .node-sponsor-box > div .taxonomy-box {
+	display: block;
+	float: left;
+	width: 100%;
+	padding: 1.5vw;
+	text-align: center;
+	border-right: 1px solid $color-gray;
+	background: $color-light;
+}
+.node-article-box .node-sponsor-box > div .taxonomy-box a {
+	display: inline-block;
+}
+
+.node-article-box .node-body-box {
+	padding: 1.5vw;
+}
+
+.node-article-box .help-info-box {
+	float: left;
+	width: 100%;
+}
+.node-article-box .help-info-box .files-box,
+.node-article-box .help-info-box .links-box {
+	padding: 0;
+}
+.node-article-box .help-info-box .files-box h3,
+.node-article-box .help-info-box .links-box h3 {
+	margin: 1vw 0;
+}
+.node-article-box .help-info-box .files-box .article-link-file,
+.node-article-box .help-info-box .links-box .article-link-url {
+	float: left;
+	width: 100%;
+	margin: 0 0 0.5vw 0;
+}
+.node-article-box .help-info-box .links-box .article-link-url a {
+	text-decoration: underline;
+}
+.node-article-box .help-info-box .links-box .article-link-url a:hover {
+	color: $color-secondary;
+	text-decoration: none;
+}
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Node Article News - Default]
+------------------------------------------------------------------*/

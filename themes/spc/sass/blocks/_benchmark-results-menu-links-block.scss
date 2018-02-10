@@ -1,0 +1,22 @@
+/*------------------------------------------------------------------
+[Top Benchmark Results Menu Links - Block]
+------------------------------------------------------------------*/
+
+.block-benchmark-results-menu {
+	float: left;
+	width: 100%;
+	padding-top: calc(1.5vw + 1vw);
+}
+.block-benchmark-results-menu:first-child {
+	padding-top: 1vw;
+}
+
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Top Benchmark Results Menu Links - Block]
+------------------------------------------------------------------*/

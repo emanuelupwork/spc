@@ -1,0 +1,81 @@
+/*------------------------------------------------------------------
+[Benchmark Results Top 10 - Page]
+------------------------------------------------------------------*/
+
+.benchmark-results-page .item-box {
+	float: left;
+	width: 100%;
+	margin: 1.5vw 0;
+}
+.benchmark-results-page .item-box:last-child {
+	margin-bottom: 0;
+}
+
+/*--- Menu Links ---*/
+.benchmark-results-page .top-ten-links {
+	float: left;
+	width: 100%;
+	padding-top: 1vw;
+}
+.benchmark-results-page .top-ten-links .menu-links li {
+	width: 50%;
+}
+/*--- Menu Links ---*/
+
+/*--- Table Results ---*/
+.benchmark-results-page .table-results tr td .sponsor-link-box img {
+	margin: 0 auto;
+	max-width: 120px;
+	padding: 0.75vw;
+	background-color: $color-light;
+	border: 1px solid transparentize($color-primary, 0.8);
+}
+/*--- END Table Results ---*/
+
+/*--- Filters ---*/
+.benchmark-results-page form.views-exposed-form {
+	margin: 0;
+}
+/*--- END Filters ---*/
+
+/*--- Grouping ---*/
+.benchmark-results-page .grouping-parent-box {
+	float: left;
+	width: 100%;
+	padding: 1.5vw;
+	font-size: 1.2vw;
+	color: $color-primary;
+	font-weight: 700;
+	text-align: center;
+	text-transform: uppercase;
+	background: rgba($color-primary, 0.2);
+}
+
+.benchmark-results-page .grouping-child-box {
+	display: block;
+	float: left;
+	width: 100%;
+	padding: 0.5vw;
+	font-size: 0.8vw;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.benchmark-results-page .grouping-child-box.version {
+	color: $color-primary;
+	background: $color-gray;
+}
+.benchmark-results-page .grouping-child-box.status {
+	color: $color-primary;
+	background: $color-light-gray;
+}
+/*--- END Grouping ---*/
+
+/*===== extra small devices(e.g. smartphones) =====*/
+@media screen and (max-width: $phone-max-width) {
+	
+}
+
+/*------------------------------------------------------------------
+[END Benchmark Results Top 10 - Page]
+------------------------------------------------------------------*/

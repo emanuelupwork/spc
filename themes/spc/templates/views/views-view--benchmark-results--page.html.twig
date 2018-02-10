@@ -1,0 +1,115 @@
+{#
+/**
+ * @file
+ * Default theme implementation for main view template.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - css_name: A css-safe version of the view name.
+ * - css_class: The user-specified classes names, if any.
+ * - header: The optional header.
+ * - footer: The optional footer.
+ * - rows: The results of the view query, if any.
+ * - empty: The content to display if there are no rows.
+ * - pager: The optional pager next/prev links to display.
+ * - exposed: Exposed widget form/info to display.
+ * - feed_icons: Optional feed icons to display.
+ * - more: An optional link to the next page of results.
+ * - title: Title of the view, only used when displaying in the admin preview.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the view title.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the view title.
+ * - attachment_before: An optional attachment view to be displayed before the
+ *   view content.
+ * - attachment_after: An optional attachment view to be displayed after the
+ *   view content.
+ * - dom_id: Unique id for every view being printed to give unique class for
+ *   Javascript.
+ *
+ * @see template_preprocess_views_view()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+  	'benchmark-results-page',
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+{% set viewTitle = view.title %}
+
+{% if viewTitleExtend %}
+    {% set viewTitle = viewTitle ~ ' ' ~ viewTitleExtend[0] ~ ' ' ~ viewTitleExtend[1] %}
+{% endif %}
+
+{% if view.args[1] == 'all' or view.args[1] is null and isTop10 == true and rowVersions|length > 1 %}
+	<div{{ attributes.addClass(classes) }}>
+		{{ title_prefix }}
+  		<div class="view-title-box">
+			<div class="view-title-content">
+  				<h1>{{ viewTitle }} - <span class="default-text">{{ viewBy }}</span></h1>
+			</div>
+		</div>
+	  {{ title_suffix }}
+	  <div class="top-ten-links">
+		<ul class="menu-links">
+			{% for version in rowVersions %}
+				<li>
+				    <a href="{{ base_path }}{{ view.getPath() }}/{{ view.args[0] }}/{{ version }}" title='{{ viewTitle }} {{ viewTitleExtend[0] }} Version 1'>
+				        <span class="icon-box"></span>
+      					<span class="title">{{ view.title }} {{ viewTitleExtend[0] }}</span>
+      				    <span class="desc-box">{{ viewBy }}</span>
+      				    <span class="desc-box">Version {{ version }}</span>
+      				</a>
+				</li>
+			{% endfor %}
+		</ul>
+	  </div>
+	</div>
+{% else %}
+	<div{{ attributes.addClass(classes) }}>
+  
+	  {{ title_prefix }}
+  		{% if viewTitle %}
+  			<div class="view-title-box">
+				<div class="view-title-content">
+  					{% if isTop10 == true %}
+  						<h1>{{ viewTitle }} - <span class="default-text">{{ viewBy }}</span></h1>
+  					{% else %}
+  						<h1>{{ viewTitle }}</h1>
+  					{% endif %}
+				</div>
+			</div>
+  		{% endif %}
+	  {{ title_suffix }}
+	  
+	  {% if header %}
+	    <header>
+	      {{ header }}
+	    </header>
+	  {% endif %}
+	  
+	  {{ exposed }}
+	  {{ attachment_before }}
+	  
+  	  {{ rows }}
+	  
+	  {{ empty }}
+	  {{ pager }}
+
+	  {{ attachment_after }}
+	  {{ more }}
+
+	  {% if footer %}
+	    <footer>
+	      {{ footer }}
+	    </footer>
+	  {% endif %}
+
+	  {{ feed_icons }}
+	</div>
+{% endif %}
+
+

@@ -1,0 +1,211 @@
+<?php
+	use \Drupal\views\Views as Views;
+	
+	unset($_SESSION['benchmarksGroupingValues']);
+	$_SESSION['benchmarksGroupingValues'] = [];
+	
+	function spc_preprocess(&$variables, $hook){
+	    $variables['base_path'] = base_path();
+	}
+	
+	/**
+	 * Adds the possibility to create custom twig templates for each Custom Block Type.
+	 * 
+	 * @param array $suggestions
+	 * @param array $variables
+	 */
+	function spc_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+		if (isset($variables['elements']['content']['#block_content'])) {
+			array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+		}
+	}
+	
+	/**
+	 * Prepares variables for view templates.
+	 * 
+	 * @param array $variables
+	 */
+	function spc_preprocess_views_view(&$variables) {
+		$view = $variables['view'];
+		$id = $view->id();
+		$currentDisplay = $view->current_display;
+		
+  		if ($id == 'benchmark_results'){
+  			
+			if ($currentDisplay == 'benchmark_results_performance' || $currentDisplay == 'benchmark_results_price'){
+				
+				$viewTitleExtend = array();
+				$taxonomyTitles = array();
+				$versions = [];
+				
+				$views = new Views();
+				$viewsObject = $views->getView($id);
+				$viewsObject = $viewsObject->executeDisplay('benchmark_results', $view->args);
+				
+				foreach($viewsObject['#view']->result as $row){
+					$rowVers = substr($row->_entity->get('field_version')->referencedEntities()[0]->getName(), 0, 1);
+					
+					if ( !in_array($rowVers, $versions) ) {
+						array_push($versions, $rowVers);
+					}
+				}
+				
+				if (!isset($view->args[1])){
+					$viewTitleExtend[1] = 'All Versions';
+				}
+				
+				foreach($view->args as $key => $arg){
+					if ($key == 0){
+						$taxonomyObject = \Drupal::entityManager()->getStorage('taxonomy_term')->loadByProperties(array('name' => $arg));
+						
+						foreach($taxonomyObject as $taxId => $taxonomyTerm){
+							$viewTitleExtend[$key] = str_replace('SPC', 'SPC-', $taxonomyTerm->getName());
+						}
+					} else {
+						if ($arg == 'all'){
+							$viewTitleExtend[$key] = 'All Versions';
+						} else {
+							$viewTitleExtend[$key] = 'Version ' . $arg;
+						}
+					}
+				}
+				
+				if ($currentDisplay == 'benchmark_results_performance'){
+					$variables['viewBy'] = 'by Performance';
+				}
+				if ($currentDisplay == 'benchmark_results_price'){
+					$variables['viewBy'] = 'by Price-Performance';
+				}
+				
+				$variables['isTop10'] = true;
+				$variables['rowVersions'] = $versions;
+				$variables['viewTitleExtend'] = $viewTitleExtend;
+			}	
+  		}
+  		
+  		return $variables;
+	}
+	
+	/**
+	 * Prepares variables for views unformatted rows templates.
+	 * 
+	 * @param array $variables
+	 */
+	function spc_preprocess_views_view_unformatted(&$variables) {
+		$view = $variables['view'];
+		$id = $view->id();
+		$currentDisplay = $view->current_display;
+		$ranksResult = array();
+		$categoryList = [];
+		
+		if ($id == 'benchmark_results' && $currentDisplay !== 'benchmark_results_article' && $currentDisplay !== 'benchmark_results_articles_block'){
+			
+			if (count($view->args) > 0){
+				foreach($view->args as $key => $arg){
+					if ($key == 0){
+						if ($arg !== 'all'){
+							$termName = $arg;
+						} else {
+							$taxonomyName = $view->result[0]->_entity->get('field_category')->referencedEntities()[0]->getName();
+							$termName =  str_replace('-', '', substr($taxonomyName, 0, 5));
+						}	
+					}
+				}
+			} else {
+				$taxonomyName = $view->result[0]->_entity->get('field_category')->referencedEntities()[0]->getName();
+				$termName =  str_replace('-', '', substr($taxonomyName, 0, 5));
+			}
+			
+			$taxonomyObject = \Drupal::entityManager()->getStorage('taxonomy_term')->loadByProperties(array('name' => $termName));
+						
+			foreach($taxonomyObject as $taxId => $taxonomyTerm){
+				$category = str_replace('SPC', 'SPC-', $taxonomyTerm->getName());
+				$vocabularyId = $taxonomyTerm->get('vid')->getValue()[0]['target_id'];
+				$vocabularyTree = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadTree($vocabularyId, $parent = 0, $max_depth = 2, $load_entities = FALSE);
+				
+				foreach($vocabularyTree as $term){
+					if ($term->parents[0] == $taxId){
+						$categoryList[] = $term->name;
+					}
+				}
+			}
+			
+			if ($currentDisplay == 'benchmark_results_performance'){
+				$views = new Views();
+				$viewsObject = $views->getView($id);
+				$viewsObject = $viewsObject->executeDisplay('benchmark_results_performance_ranks', $view->args);
+				
+				foreach($viewsObject['#view']->result as $key => $row){
+					$ranksResult[$row->_entity->id()] = array('rank' => ($key+1));
+				}
+				
+				$variables['isTop10'] = true;
+				$variables['viewBy'] = 'by Performance';
+			} elseif ($currentDisplay == 'benchmark_results_price'){
+				$views = new Views();
+				$viewsObject = $views->getView($id);
+				$viewsObject = $viewsObject->executeDisplay('benchmark_results_price_ranks', $view->args);
+				
+				foreach($viewsObject['#view']->result as $key => $row){
+					$ranksResult[$row->_entity->id()] = array('rank' => ($key+1));
+				}
+				
+				$variables['isTop10'] = true;
+				$variables['viewBy'] = 'by Price-Performance';
+			}
+			
+			$variables['benchmarksGroupingValues'] = $_SESSION['benchmarksGroupingValues'];
+			$variables['category'] = $category;
+		}
+		
+		$variables['categoryList'] = $categoryList;
+		$variables['ranksResult'] = $ranksResult;
+		return $variables;
+	}
+	
+	function spc_preprocess_views_view_grouping(&$variables) {
+		$view = $variables['view'];
+		$id = $view->id();
+		$currentDisplay = $view->current_display;
+		
+		if ($id == 'benchmark_results' && $currentDisplay !== 'benchmark_results_article' && $currentDisplay !== 'benchmark_results_articles_block'){
+			$_SESSION['benchmarksGroupingValues'][$variables['grouping_level']] = $variables['title'];
+		}
+		
+		return $variables;
+	}
+	
+	/**
+	* Implements hook_form_alter() for contact form:
+	*/
+	function spc_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+		if ($form_id == 'contact_message_contact_us_form' || $form_id == 'contact_message_apply_for_membership_form') {
+			unset($form['langcode']);
+			unset($form['actions']['preview']);
+		}
+	}
+	
+	function spc_preprocess_swiftmailer(&$variables) {
+		$logoPath = '/' . drupal_get_path('theme','spc') . '/images/logo.png';
+		$baseUrl = $GLOBALS['base_url'];
+		
+		$variables['base_url'] = $baseUrl;
+		$variables['logo_url'] = $baseUrl . $logoPath;
+		$variables['site_name'] = \Drupal::config('system.site')->get('name');
+		$variables['form_url'] = \Drupal::url('<current>', [], ['absolute' => TRUE]);
+		
+//		$fields = $variables['message']['params']['contact_message']->getFields();
+//		
+//		foreach($fields as $key => $field){
+//			echo '<pre>';
+//			var_dump($field->getFieldDefinition()->getLabel());
+//			var_dump($field->getFieldDefinition()->getFieldStorageDefinition()->isBaseField());
+//			var_dump($field->getName());
+//			echo '</pre>';
+//		}
+//		
+//		exit;
+		
+		return $variables;
+	}
+?>

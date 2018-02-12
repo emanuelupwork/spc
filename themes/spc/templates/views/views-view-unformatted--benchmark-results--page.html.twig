@@ -62,7 +62,7 @@
 				{% set executiveSummaryLabel = row.content['#row']._entity.get('field_executive_summary').getFieldDefinition().getLabel() %}
 				{% set fullDisclosureReportFileUrl = file_url(row.content['#row']._entity.get('field_full_disclosure_report').0.entity.getFileUri()) %}
 				{% set fullDisclosureReportLabel = row.content['#row']._entity.get('field_full_disclosure_report').getFieldDefinition().getLabel() %}
-				{% set supportingFilesFileUrl = file_url(row.content['#row']._entity.get('field_supporting_files').0.entity.getFileUri()) %}
+				{% set supportingFilesFileUrl = file_url(row.content['#row']._entity.get('field_supporting_files').entity.getFileUri()) %}
 				{% set supportingFilesLabel = row.content['#row']._entity.get('field_supporting_files').getFieldDefinition().getLabel() %}
 				{% set submissionDate = row.content['#row']._entity.get('field_submission_date').getValue()[0].value %}
 				{% set revisionDate = row.content['#row']._entity.get('field_revision_status').getValue()[0].value %}

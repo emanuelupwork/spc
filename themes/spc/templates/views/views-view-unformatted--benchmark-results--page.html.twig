@@ -77,7 +77,7 @@
 				<tr>
 					{% if isTop10 == true %}
 						<td>
-							<span><b>#{{ ranksResult[nodeId].rank }}</b></span>
+							<span><b> {{ loop.index }} {# { ranksResult[nodeId].rank } #}</b></span>
 						</td>
 						<td>
 							{% if viewBy == 'by Performance' %}

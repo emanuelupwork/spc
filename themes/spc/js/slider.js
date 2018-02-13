@@ -29,24 +29,37 @@
 	        isVertical: true
 		});
 	}
+        Drupal.behaviors.homeSlider = {
+            attach: function (context, settings) {
+                if (window.innerWidth > 767) {
+                        SLIDER.initHomeSliderDesktop();
+                } else {
+                        SLIDER.initHomeSliderMobile();
+                }
+                $('.js-home-slider').on('expand.kwicks', function(e, data) {
+                    var $slider = $(this);
+                    var index       = $('.js-home-slider').kwicks('expanded');
+
+                    $slider.kwicks('select', index);
+                });
+
+                $(window).resize(function(){
+                    if (window.innerWidth > 767) {
+                        SLIDER.homeSliderDestroy();
+                        SLIDER.initHomeSliderDesktop();
+                    } else {
+                        SLIDER.homeSliderDestroy();
+                        SLIDER.initHomeSliderMobile();
+                    }
+
+                $('.js-home-slider').kwicks('expand', 0);
+        });
+             }
+             
+        }
 	
 	
-	$(window).load(function(){
-		if (window.innerWidth > 767) {
-			SLIDER.initHomeSliderDesktop();
-		} else {
-			SLIDER.initHomeSliderMobile();
-		}
-		
-		$('.js-home-slider').on('expand.kwicks', function(e, data) {
-			var $slider = $(this);
-			var index 	= $('.js-home-slider').kwicks('expanded');
-			
-			$slider.kwicks('select', index);
-		});
-	});	
-	
-	$(window).resize(function(){
+	$(document).resize(function(){
 		if (window.innerWidth > 767) {
 			SLIDER.homeSliderDestroy();
 			SLIDER.initHomeSliderDesktop();

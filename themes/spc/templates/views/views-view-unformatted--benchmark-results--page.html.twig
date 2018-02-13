@@ -49,7 +49,7 @@
 				{% set price = row.content['#row']._entity.get('field_price_performance').getValue()[0].value %}
 				{% set sponsorName = row.content['#row']._entity.get('field_sponsor').entity.getName() %}
 				{% set sponsorUrl =  file_url(row.content['#row']._entity.get('field_sponsor').entity.get('field_link').getValue()[0].uri) %}
-				{% set sponsorImage =  file_url(row.content['#row']._entity.get('field_sponsor').entity.get('field_image').0.entity.getFileUri()) %}
+				{% set sponsorImage =  file_url(row.content['#row']._entity.get('field_sponsor').entity.get('field_image').entity.getFileUri()) %}
 				{% set articleTitle =  row.content['#row']._entity.get('title').getValue()[0].value %}
 				{% set tspLinkText =  row.content['#row']._entity.get('field_tested_storage_product_tsp').getValue()[0].title %}
 				{% set tspLinkUrl =  file_url(row.content['#row']._entity.get('field_tested_storage_product_tsp').getValue()[0].uri) %}
@@ -58,9 +58,9 @@
 				{% set peerReviewDate =  row.content['#row']._entity.get('field_peer_review_date').getValue()[0].value %}
 				{% set storageDeviceCategories =  row.content['#row']._entity.get('field_storage_device_category') %}
 				{% set storageDeviceCatList = [] %}
-				{% set executiveSummaryFileUrl = file_url(row.content['#row']._entity.get('field_executive_summary').0.entity.getFileUri()) %}
+				{% set executiveSummaryFileUrl = file_url(row.content['#row']._entity.get('field_executive_summary').entity.getFileUri()) %}
 				{% set executiveSummaryLabel = row.content['#row']._entity.get('field_executive_summary').getFieldDefinition().getLabel() %}
-				{% set fullDisclosureReportFileUrl = file_url(row.content['#row']._entity.get('field_full_disclosure_report').0.entity.getFileUri()) %}
+				{% set fullDisclosureReportFileUrl = file_url(row.content['#row']._entity.get('field_full_disclosure_report').entity.getFileUri()) %}
 				{% set fullDisclosureReportLabel = row.content['#row']._entity.get('field_full_disclosure_report').getFieldDefinition().getLabel() %}
 				{% set supportingFilesFileUrl = file_url(row.content['#row']._entity.get('field_supporting_files').entity.getFileUri()) %}
 				{% set supportingFilesLabel = row.content['#row']._entity.get('field_supporting_files').getFieldDefinition().getLabel() %}
@@ -81,7 +81,7 @@
 						</td>
 						<td>
 							{% if viewBy == 'by Performance' %}
-								<span><b>{{ performance }}</b></span>
+								<span><b>{{ performance|number_format(2, '.', ',') }}</b></span>
 							{% elseif viewBy == 'by Price-Performance'  %}
 								<span><b>{{ '$' ~ price }}</b></span>
 							{% endif %}

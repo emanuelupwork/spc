@@ -99,8 +99,7 @@
 		$categoryList = [];
 		
 		if ($id == 'benchmark_results' && $currentDisplay !== 'benchmark_results_article' && $currentDisplay !== 'benchmark_results_articles_block'){
-			
-			if (count($view->args) > 0){
+                 	if (count($view->args) > 0){
 				foreach($view->args as $key => $arg){
 					if ($key == 0){
 						if ($arg !== 'all'){
@@ -156,6 +155,7 @@
 			
 			$variables['benchmarksGroupingValues'] = $_SESSION['benchmarksGroupingValues'];
 			$variables['category'] = $category;
+
 		}
 		
 		$variables['categoryList'] = $categoryList;

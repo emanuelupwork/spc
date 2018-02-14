@@ -17,12 +17,16 @@
  * @ingroup themeable
  */
 #}
-
 <div class="item-box">
 	{% if isTop10 == null %}
 		<div class="grouping-parent-box">
-			{{ benchmarksGroupingValues[2] }} {{ benchmarksGroupingValues[0] }} - <span>Version {{ benchmarksGroupingValues[1] }}</span>
-		</div>
+		    {% if benchmarksGroupingValues[0] == null %}
+                        {{ title }}
+
+                    {% else %}
+		       	{{ benchmarksGroupingValues[2] }} {{ benchmarksGroupingValues[0] }} - <span>Version {{ benchmarksGroupingValues[1] }}</span>
+                    {% endif %}
+                </div>
 	{% endif %}
 
 	<table class="table-results table table-bordered table-striped">
@@ -44,7 +48,7 @@
 		</thead>
 		<tbody>
 			{% for row in rows %}
-				{% set nodeId = row.content['#row'].nid %}
+                         	{% set nodeId = row.content['#row'].nid %}
 				{% set performance = row.content['#row']._entity.get('field_primary_metric').getValue()[0].value %}
 				{% set price = row.content['#row']._entity.get('field_price_performance').getValue()[0].value %}
 				{% set sponsorName = row.content['#row']._entity.get('field_sponsor').entity.getName() %}

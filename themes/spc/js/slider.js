@@ -12,7 +12,7 @@
 	//		maxSize : '65.5%',
 			minSize : '16.65%',
 			spacing : 0,
-			behavior: 'menu', // Indicates if/what out-of-the-box behavior should be enabled (e.g: 'slideshow', 'menu').
+			behavior: 'slideshow', // Indicates if/what out-of-the-box behavior should be enabled (e.g: 'slideshow', 'menu').
 			interactive: true // Indicates whether or not the mouse interactions described above should be enabled.
 		});
 	}

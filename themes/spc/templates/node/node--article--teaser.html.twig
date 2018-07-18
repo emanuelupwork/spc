@@ -82,7 +82,7 @@
 	{{ title_prefix }}
 	{{ title_suffix }}
 
-	{% if imagePath %}
+	{% if imagePath != null %}
 		<div class="image-box" style="background-image: url('{{ imagePath }}');"></div>
 	{% endif %}
 

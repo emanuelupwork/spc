@@ -1,0 +1,152 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% macro bytesToSize(bytes) %}
+{% spaceless %}
+	{% set kilobyte = 1024 %}
+	{% set megabyte = kilobyte * 1024 %}
+	{% set gigabyte = megabyte * 1024 %}
+	{% set terabyte = gigabyte * 1024 %}
+
+	{% if bytes < kilobyte %}
+		{{ bytes ~ ' B' }}
+	{% elseif bytes < megabyte %}
+		{{ (bytes / kilobyte)|number_format(2, '.') ~ ' KB' }}
+	{% elseif bytes < gigabyte %}
+		{{ (bytes / megabyte)|number_format(2, '.') ~ ' MB' }}
+	{% elseif bytes < terabyte %}
+		{{ (bytes / gigabyte)|number_format(2, '.') ~ ' GB' }}
+	{% else %}
+		{{ (bytes / terabyte)|number_format(2, '.') ~ ' TB' }}
+	{% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro mimeTypeToExtension(mimeType) %}
+	{% spaceless %}
+		{% if mimeType == 'application/pdf' %}
+			{{ 'PDF' }}
+		{% elseif mimeType in [
+			'application/msword',
+			'application/rtf',
+			'application/x-rtf',
+			'text/richtext'
+		] %}
+			{{ 'DOC' }}
+		{% elseif mimeType in [
+			'application/x-cpio',
+			'application/x-shar',
+			'application/x-tar',
+			'application/gnutar',
+			'application/x-bzip',
+			'application/x-bzip2',
+			'application/x-gzip',
+			'multipart/x-gzip',
+			'application/x-lzip',
+			'application/x-lzma',
+			'application/x-lzop',
+			'application/x-xz',
+			'application/x-compress',
+			'application/x-7z-compressed',
+			'application/x-ace-compressed',
+			'application/vnd.android.package-archive',
+			'application/x-compressed',
+			'application/x-zip-compressed',
+			'application/zip',
+			'multipart/x-zip',
+			'application/x-zip'
+		] %}
+			{{ 'Archive' }}
+		{% endif %}
+	{% endspaceless %}
+{% endmacro %}
+
+<div id="{{ title|striptags|trim|lower }}" class="category-box">
+	{% for row in rows %}
+		{%
+			set row_classes = [
+				'specification-item-box',
+			  	default_row_class ? 'views-row',
+			]
+		%}
+		{% set articleTitle = row.content['#row']._entity.get('title').value %}
+		{% set bodyValue = row.content['#row']._entity.get('body').value %}
+		{% set specFields = row.content['#row']._entity.get('field_specifications') %}
+		
+		<div{{ row.attributes.addClass(row_classes) }}>
+			<h2 class="article-title">{{ articleTitle }}</h2>
+			<div class="spec-content">
+				{% autoescape %}
+				{{ bodyValue|raw }}
+				{% endautoescape %}
+			</div>
+			<div class="spec-info">
+				<table class="table-results table table-bordered table-striped">
+					<thead>
+						<tr>
+							
+							<th>
+								<span>Version</span><br />
+								<span>(effective date)</span>
+							</th>
+							<th>Description/Comments</th>
+							<th>Format</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for specField in specFields %}
+    						{% set descValue = specField.getFieldCollectionItem().get('field_description_comments').value %}
+    						{% set effectiveDateValue = specField.getFieldCollectionItem().get('field_effective_date').value %}
+    						{% set fileList = specField.getFieldCollectionItem().get('field_file') %}
+    						{% set version = specField.getFieldCollectionItem().get('field_version').entity.getName() %}
+    						<tr>
+								<td>
+									<span>{{ 'v' ~ version }}</span>
+									<span>({{ effectiveDateValue|date("d F Y", false) }})</span>
+								</td>
+								<td>
+									{% autoescape %}
+									{{ descValue|raw }}
+									{% endautoescape %}
+								</td>
+								<td>
+									{% for file in fileList %}
+										{% set fileSize = file.entity.getSize() %}
+										{% set fileMimeType = file.entity.getMimeType() %}
+										{% set fileUrl = file_url(file.entity.fileuri) %}
+										<div class="file-link">
+											<a class="btn btn-primary btn-icon" href="{{ fileUrl }}">
+												{{ _self.mimeTypeToExtension(fileMimeType) }}
+												<span class="icon-box">
+													<i class="fa fa-download" aria-hidden="true"></i>
+												</span>
+											</a>
+											({{ _self.bytesToSize(fileSize) }})
+										</div>
+									{% endfor %}
+								</td>
+							</tr>
+    					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	{% endfor %}
+</div>

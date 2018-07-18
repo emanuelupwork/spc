@@ -1,0 +1,149 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+<!--
+{{ versionFamily }}
+-->
+<div class="item-box">
+	{% if isTop10 == null %}
+		<div class="grouping-parent-box">
+		    {% if benchmarksGroupingValues[0] == null %}
+                        {{ title }}
+
+                    {% else %}
+		       	{{ benchmarksGroupingValues[2] }} {{ benchmarksGroupingValues[0] }} - <span>Version {{ benchmarksGroupingValues[1] }}</span>
+                    {% endif %}
+                </div>
+	{% endif %}
+	<table class="table-results table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Rank</th>
+				{% if isTop10 == true %}
+					<!-- {{ url }} -->
+					{% if viewBy == 'by Performance' %}
+						<th>Performance ({{ category }} IOPS)</th>
+					{% elseif viewBy == 'by Price-Performance'  %}
+						{% if versionFamily == '3' %}
+							<th>Price-Performance ($/{{ category }} KIOPS {{ bmVersion }})</th>
+						{% else %}
+							<th>Price-Performance ($/{{ category }} IOPS {{ bmVersion }})</th>
+						{% endif %}
+					{% endif %}
+				{% endif %}
+				<th>Test Sponsor</th>
+				<th>Submission Identifier</th>
+				<th>Tested Storage Product</th>
+				<th>Version</th>
+				<th>Storage Device Category</th>
+				<th>Downloads</th>
+				<th>Submission Date</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for row in rows %}
+                         	{% set nodeId = row.content['#row'].nid %}
+				{% set performance = row.content['#row']._entity.get('field_primary_metric').getValue()[0].value %}
+				{% set price = row.content['#row']._entity.get('field_price_performance').getValue()[0].value %}
+				{% set sponsorName = row.content['#row']._entity.get('field_sponsor').entity.getName() %}
+				{% set sponsorUrl =  file_url(row.content['#row']._entity.get('field_sponsor').entity.get('field_link').getValue()[0].uri) %}
+				{% set sponsorImage =  file_url(row.content['#row']._entity.get('field_sponsor').entity.get('field_image').entity.getFileUri()) %}
+				{% set articleTitle =  row.content['#row']._entity.get('title').getValue()[0].value %}
+				{% set tspLinkText =  row.content['#row']._entity.get('field_tested_storage_product_tsp').getValue()[0].title %}
+				{% set tspLinkUrl =  file_url(row.content['#row']._entity.get('field_tested_storage_product_tsp').getValue()[0].uri) %}
+				{% set version =  row.content['#row']._entity.get('field_version').entity.getName() %}
+				{% set peerReviewStatus =  row.content['#row']._entity.get('field_peer_review_status').entity.getName() %}
+				{% set peerReviewDate =  row.content['#row']._entity.get('field_peer_review_date').getValue()[0].value %}
+				{% set storageDeviceCategories =  row.content['#row']._entity.get('field_storage_device_category') %}
+				{% set storageDeviceCatList = [] %}
+				{% set executiveSummaryFileUrl = file_url(row.content['#row']._entity.get('field_executive_summary').entity.getFileUri()) %}
+				{% set executiveSummaryLabel = row.content['#row']._entity.get('field_executive_summary').getFieldDefinition().getLabel() %}
+				{% set fullDisclosureReportFileUrl = file_url(row.content['#row']._entity.get('field_full_disclosure_report').entity.getFileUri()) %}
+				{% set fullDisclosureReportLabel = row.content['#row']._entity.get('field_full_disclosure_report').getFieldDefinition().getLabel() %}
+				{% set supportingFilesFileUrl = file_url(row.content['#row']._entity.get('field_supporting_files').entity.getFileUri()) %}
+				{% set supportingFilesLabel = row.content['#row']._entity.get('field_supporting_files').getFieldDefinition().getLabel() %}
+				{% set submissionDate = row.content['#row']._entity.get('field_submission_date').getValue()[0].value %}
+				{% set revisionDate = row.content['#row']._entity.get('field_revision_status').getValue()[0].value %}
+				
+				{% for storDevCat in storageDeviceCategories %}
+					{% set catName = storDevCat.entity.getName() %}
+					{% if catName not in storageDeiceCatList %}
+						{% set storageDeviceCatList = storageDeviceCatList|merge([catName]) %}
+					{% endif %}
+				{% endfor %}
+				
+				<tr id={{ articleTitle }}>
+					{% if isTop10 == true %}
+						<td>
+							<span><b> #{{ loop.index }} {# { ranksResult[nodeId].rank } #}</b></span>
+						</td>
+						<td>
+							{% if viewBy == 'by Performance' %}
+								<span><b>{{ performance|number_format(2, '.', ',') }}</b></span>
+							{% elseif viewBy == 'by Price-Performance'  %}
+								<span><b>{{ '$' ~ price }}</b></span>
+							{% endif %}
+						</td>
+					{% endif %}
+					<td>
+						<a class="sponsor-link-box" target="_blank" href="{{ sponsorUrl }}" title="{{ sponsorName }}">
+							<img class="img-responsive" src="{{ sponsorImage }}" />
+						</a>
+					</td>
+					<td>
+						<span>{{ articleTitle }}</span>
+					</td>
+					<td>
+						<a target="_blank" href="{{ tspLinkUrl }}" title="{{ tspLinkText }}">{{ tspLinkText }}</a>
+					</td>
+					<td>
+						<span>{{ version}}</span>
+					</td>
+					<td>
+						<span><b>{{ storageDeviceCatList|join(' and ') }}</b></span>
+					</td>
+					<td>
+						{% if executiveSummaryFileUrl|length > 1 %}
+							<a class="btn btn-primary btn-icon" href="{{ executiveSummaryFileUrl }}">
+								ES
+							</a>
+						{% endif %}
+						{% if fullDisclosureReportFileUrl|length > 1 %}
+							<a class="btn btn-primary btn-icon" href="{{ fullDisclosureReportFileUrl }}">
+								FDR
+							</a>
+						{% endif %}
+						{% if supportingFilesFileUrl|length > 1 %}
+							<a class="btn btn-info btn-icon" href="{{ supportingFilesFileUrl }}">
+								SF
+							</a>
+						{% endif %}
+					</td>
+					<td>
+						{{ submissionDate|date("d F Y", false) }}
+					</td>
+					<td>
+						<span><b>{{ peerReviewStatus }}:</b> <i>{{ peerReviewDate|date("d F Y", false) }}</i></span>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

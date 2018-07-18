@@ -17,6 +17,9 @@
  * @ingroup themeable
  */
 #}
+<!--
+{{ versionFamily }}
+-->
 <div class="item-box">
 	{% if isTop10 == null %}
 		<div class="grouping-parent-box">
@@ -28,22 +31,32 @@
                     {% endif %}
                 </div>
 	{% endif %}
-
 	<table class="table-results table table-bordered table-striped">
 		<thead>
 			<tr>
 				{% if isTop10 == true %}
+					<th>Rank</th>
 					{% if viewBy == 'by Performance' %}
-						<th colspan="2">Rank, Performance ({{ category }} IOPS)</th>
+						<th>Performance ({{ category }} IOPS)</th>
 					{% elseif viewBy == 'by Price-Performance'  %}
-						<th colspan="2">Rank, Price-Performance ({{ category }} IOPS)</th>
+						{% if versionFamily == '3' %}
+							<th>Price-Performance ($/{{ category }} KIOPS {{ bmVersion }})</th>
+						{% else %}
+							<th>Price-Performance ($/{{ category }} IOPS {{ bmVersion }})</th>
+						{% endif %}
 					{% endif %}
 				{% endif %}
 				<th>Test Sponsor</th>
-				<th>{{ category }} Submission Identifier - Tested Storage Product (TSP)</th>
-				<th>{{ categoryList|join(', ') }} Version</th>
-				<th>Peer Review Status Storage Device Category (all listed Results are Active)</th>
-				<th colspan="2">Documentation, Submission Date, and Revision Status</th>
+				{% if isTop10 != true %}
+					<th>Performance ({{ category }} IOPS)</th>
+				{% endif %}
+				<th>Submission Identifier</th>
+				<th>Tested Storage Product</th>
+				<th>Version</th>
+				<th>Storage Device Category</th>
+				<th>Downloads</th>
+				<th>Submission Date</th>
+				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -78,10 +91,10 @@
 					{% endif %}
 				{% endfor %}
 				
-				<tr>
+				<tr id={{ articleTitle }}>
 					{% if isTop10 == true %}
 						<td>
-							<span><b> {{ loop.index }} {# { ranksResult[nodeId].rank } #}</b></span>
+							<span><b> #{{ loop.index }} {# { ranksResult[nodeId].rank } #}</b></span>
 						</td>
 						<td>
 							{% if viewBy == 'by Performance' %}
@@ -93,55 +106,48 @@
 					{% endif %}
 					<td>
 						<a class="sponsor-link-box" target="_blank" href="{{ sponsorUrl }}" title="{{ sponsorName }}">
-							<span>{{ sponsorName }}</span><br />
 							<img class="img-responsive" src="{{ sponsorImage }}" />
 						</a>
 					</td>
+					{% if isTop10 != true %}
+						<td>
+							<span>{{ performance }}</span>
+						</td>
+					{% endif %}
 					<td>
 						<span>{{ articleTitle }}</span>
+					</td>
+					<td>
 						<a target="_blank" href="{{ tspLinkUrl }}" title="{{ tspLinkText }}">{{ tspLinkText }}</a>
 					</td>
 					<td>
 						<span>{{ version}}</span>
 					</td>
 					<td>
-						<span><b>{{ peerReviewStatus }}:</b> <i>{{ peerReviewDate|date("d F Y", false) }}</i></span>
-						<span><b>{{ storageDeviceCatList|join(' and ') }}</b> storage devices</span>
+						<span><b>{{ storageDeviceCatList|join(' and ') }}</b></span>
 					</td>
-					<td style="min-width: 20%">
+					<td>
 						{% if executiveSummaryFileUrl|length > 1 %}
 							<a class="btn btn-primary btn-icon" href="{{ executiveSummaryFileUrl }}">
-								{{ executiveSummaryLabel }}
-								<span class="icon-box">
-									<i class="fa fa-download" aria-hidden="true"></i>
-								</span>
+								ES
 							</a>
 						{% endif %}
 						{% if fullDisclosureReportFileUrl|length > 1 %}
 							<a class="btn btn-primary btn-icon" href="{{ fullDisclosureReportFileUrl }}">
-								{{ fullDisclosureReportLabel }}
-								<span class="icon-box">
-									<i class="fa fa-download" aria-hidden="true"></i>
-								</span>
+								FDR
 							</a>
 						{% endif %}
 						{% if supportingFilesFileUrl|length > 1 %}
 							<a class="btn btn-info btn-icon" href="{{ supportingFilesFileUrl }}">
-								{{ supportingFilesLabel }}
-								<span class="icon-box">
-									<i class="fa fa-download" aria-hidden="true"></i>
-								</span>
+								SF
 							</a>
 						{% endif %}
-						<span><i><b>Submitted:</b> {{ submissionDate|date("d F Y", false) }}</i></span>
 					</td>
 					<td>
-						{% if revisionDate is not null %}
-							<span><b>Revised</b></span>
-							<span>{{ revisionDate|date("d F Y", false) }}</span>
-						{% else %}
-							<span>No Revisions</span>
-						{% endif %}
+						{{ submissionDate|date("d F Y", false) }}
+					</td>
+					<td>
+						<span><b>{{ peerReviewStatus }}:</b> <i>{{ peerReviewDate|date("d F Y", false) }}</i></span>
 					</td>
 				</tr>
 			{% endfor %}

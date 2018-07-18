@@ -26,6 +26,7 @@
 	 * @param array $variables
 	 */
 	function spc_preprocess_views_view(&$variables) {
+		$variables['preprocess_func'] = 'views_view';
 		$view = $variables['view'];
 		$id = $view->id();
 		$currentDisplay = $view->current_display;
@@ -64,8 +65,10 @@
 					} else {
 						if ($arg == 'all'){
 							$viewTitleExtend[$key] = 'All Versions';
+							$variables['versionFamily'] = $arg;
 						} else {
 							$viewTitleExtend[$key] = 'Version ' . $arg;
+							$variables['versionFamily'] = $arg;
 						}
 					}
 				}
@@ -92,6 +95,7 @@
 	 * @param array $variables
 	 */
 	function spc_preprocess_views_view_unformatted(&$variables) {
+		$variables['preprocess_func'] = 'views_view_unformatted';
 		$view = $variables['view'];
 		$id = $view->id();
 		$currentDisplay = $view->current_display;
@@ -100,6 +104,7 @@
 		
 		if ($id == 'benchmark_results' && $currentDisplay !== 'benchmark_results_article' && $currentDisplay !== 'benchmark_results_articles_block'){
                  	if (count($view->args) > 0){
+				$variables['versionFamily'] = $view->args[1];
 				foreach($view->args as $key => $arg){
 					if ($key == 0){
 						if ($arg !== 'all'){
@@ -164,6 +169,7 @@
 	}
 	
 	function spc_preprocess_views_view_grouping(&$variables) {
+		$variables['preprocess_func'] = 'views_view_grouping';
 		$view = $variables['view'];
 		$id = $view->id();
 		$currentDisplay = $view->current_display;
